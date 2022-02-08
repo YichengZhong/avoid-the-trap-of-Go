@@ -1,6 +1,7 @@
-package main
+package transports
 
 import (
+	"GoURL/arithmetic_rest_multi_endpoints/endpoints"
 	"context"
 	"encoding/json"
 	"github.com/go-kit/kit/endpoint"
@@ -47,7 +48,7 @@ func decodeArithmeticRequestString(_ context.Context, r *http.Request) (interfac
 		return nil, ErrorBadRequestString
 	}
 
-	return ArithStringRequest{
+	return endpoints.ArithStringRequest{
 		RequestType: requestType,
 		A:           pa,
 		B:           pb,

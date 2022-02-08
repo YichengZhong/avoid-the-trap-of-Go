@@ -1,6 +1,7 @@
-package main
+package transports
 
 import (
+	"GoURL/arithmetic_rest_multi_endpoints/endpoints"
 	"context"
 	"errors"
 	"github.com/go-kit/kit/log"
@@ -15,7 +16,7 @@ var (
 )
 
 // MakeHttpHandlerMath make http handler use mux
-func MakeHttpHandler(ctx context.Context, endpoint EndpointAll, logger log.Logger) http.Handler {
+func MakeHttpHandler(ctx context.Context, endpoint endpoints.EndpointAll, logger log.Logger) http.Handler {
 	r := mux.NewRouter()
 
 	options := []kithttp.ServerOption{

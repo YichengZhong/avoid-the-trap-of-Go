@@ -1,6 +1,7 @@
-package main
+package transports
 
 import (
+	"GoURL/arithmetic_rest_multi_endpoints/endpoints"
 	"context"
 	"encoding/json"
 	"github.com/gorilla/mux"
@@ -29,7 +30,7 @@ func decodeArithmeticRequestMath(_ context.Context, r *http.Request) (interface{
 	a, _ := strconv.Atoi(pa)
 	b, _ := strconv.Atoi(pb)
 
-	return ArithmeticRequest{
+	return endpoints.ArithmeticRequest{
 		RequestType: requestType,
 		A:           a,
 		B:           b,

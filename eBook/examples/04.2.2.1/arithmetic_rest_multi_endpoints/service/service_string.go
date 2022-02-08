@@ -1,4 +1,4 @@
-package main
+package service
 
 // ServiceMetricMath Define a service interface
 type ServiceMetricString interface {

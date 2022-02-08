@@ -1,6 +1,9 @@
 package main
 
 import (
+	"GoURL/arithmetic_rest_multi_endpoints/endpoints"
+	"GoURL/arithmetic_rest_multi_endpoints/service"
+	"GoURL/arithmetic_rest_multi_endpoints/transports"
 	"context"
 	"fmt"
 	"github.com/go-kit/kit/log"
@@ -15,15 +18,15 @@ func main() {
 	ctx := context.Background()
 	errChan := make(chan error)
 
-	var svcmath ServiceMetricMath
-	svcmath = ArithmeticServiceMath{}
+	var svcmath service.ServiceMetricMath
+	svcmath = service.ArithmeticServiceMath{}
 
-	var svcstring ServiceMetricString
-	svcstring = ArithmeticServiceString{}
+	var svcstring service.ServiceMetricString
+	svcstring = service.ArithmeticServiceString{}
 
-	endpointall := EndpointAll{
-		MathEndpoint:   MakeArithmeticEndpoint(svcmath),
-		StringEndpoint: MakeArithStringEndpoint(svcstring),
+	endpointall := endpoints.EndpointAll{
+		MathEndpoint:   endpoints.MakeArithmeticEndpoint(svcmath),
+		StringEndpoint: endpoints.MakeArithStringEndpoint(svcstring),
 	}
 
 	var logger log.Logger
@@ -33,7 +36,7 @@ func main() {
 		logger = log.With(logger, "caller", log.DefaultCaller)
 	}
 
-	r := MakeHttpHandler(ctx, endpointall, logger)
+	r := transports.MakeHttpHandler(ctx, endpointall, logger)
 
 	go func() {
 		fmt.Println("Http Server start at port:9000")

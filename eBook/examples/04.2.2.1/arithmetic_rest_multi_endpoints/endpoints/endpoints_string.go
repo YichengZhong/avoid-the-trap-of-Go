@@ -1,6 +1,7 @@
-package main
+package endpoints
 
 import (
+	"GoURL/arithmetic_rest_multi_endpoints/service"
 	"context"
 	"errors"
 	"github.com/go-kit/kit/endpoint"
@@ -28,7 +29,7 @@ type ArithStringResponse struct {
 type ArithStringEndpoint endpoint.Endpoint
 
 // MakeArithStringEndpoint make endpoint
-func MakeArithStringEndpoint(svc ServiceMetricString) endpoint.Endpoint {
+func MakeArithStringEndpoint(svc service.ServiceMetricString) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(ArithStringRequest)
 
